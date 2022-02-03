@@ -1,0 +1,217 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "jira assistant",
+      "intents": [
+        {
+          "name": "SetDone",
+          "slots": [
+            {
+              "name": "user_story",
+              "type": "UserStories"
+            }
+          ],
+          "samples": [
+            "I finished a user story and I want to update my status",
+            "I just finished the user story {user_story}",
+            "The {user_story} is done",
+            "I just finished the user story related to the {user_story}"
+          ]
+        },
+        {
+          "name": "SetInProgress",
+          "slots": [
+            {
+              "name": "user_story",
+              "type": "UserStories"
+            }
+          ],
+          "samples": [
+            "I will work on the {user_story}",
+            "Today I will work on the {user_story}",
+            "Today I will be working on the {user_story}",
+            "I want to set an activity in progress",
+            "Set the {user_story} to in progress"
+          ]
+        },
+        {
+          "name": "AssignToMe",
+          "slots": [
+            {
+              "name": "user_story",
+              "type": "UserStories"
+            }
+          ],
+          "samples": [
+            "Assign the  {user_story} to me",
+            "Assign the user story  {user_story} to me",
+            "Assign the  {user_story} to my user",
+            "Assign the user story  related to the {user_story} to my user",
+            "Put the  {user_story} to me",
+            "Put the user story  related to the {user_story} to me",
+            "Put the user story  related to the {user_story} to my name",
+            "I want to assign a  user story to my name"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "frontend development"
+              }
+            },
+            {
+              "name": {
+                "value": "development"
+              }
+            },
+            {
+              "name": {
+                "value": "solution deployment"
+              }
+            },
+            {
+              "name": {
+                "value": "configuration"
+              }
+            },
+            {
+              "name": {
+                "value": "implementation of the solution"
+              }
+            },
+            {
+              "name": {
+                "value": "configuration of the solution"
+              }
+            },
+            {
+              "name": {
+                "value": "transport of the solution"
+              }
+            },
+            {
+              "name": {
+                "value": "creation of the components"
+              }
+            },
+            {
+              "name": {
+                "value": "creation of the objects"
+              }
+            },
+            {
+              "name": {
+                "value": "backend development"
+              }
+            },
+            {
+              "name": {
+                "value": "deployment of the solution"
+              }
+            },
+            {
+              "name": {
+                "value": "transportation"
+              }
+            }
+          ],
+          "name": "UserStories"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "SetDone",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "user_story",
+              "type": "UserStories",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Intent-SetDone.IntentSlot-user_story"
+              }
+            }
+          ]
+        },
+        {
+          "name": "SetInProgress",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "user_story",
+              "type": "UserStories",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Intent-SetInProgress.IntentSlot-user_story"
+              }
+            }
+          ]
+        },
+        {
+          "name": "AssignToMe",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "user_story",
+              "type": "UserStories",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Intent-AssignToMe.IntentSlot-user_story"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "SKILL_RESPONSE"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Intent-SetDone.IntentSlot-user_story",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What user story do you want to update?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Intent-SetInProgress.IntentSlot-user_story",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What user story do you intend to work on?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Intent-AssignToMe.IntentSlot-user_story",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What activity do you want to have assigned to your name?"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "5"
+}
